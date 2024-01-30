@@ -85,6 +85,10 @@ dluga_liczba string_2_dluga_liczba(char s[])
         wynik.cyfry[id] = 0;
     }
     wynik.l_cyfr = 0;
+    if(s[0] == '0'){
+        wynik.l_cyfr++;
+        return wynik;
+    }
     TYPE temp = 0;
     TYPE mul = 1;
     int offset = 48; // asci '0'
@@ -120,9 +124,11 @@ dluga_liczba string_2_dluga_liczba_b(char s[])
         wynik.cyfry[id] = 0;
     }
     wynik.l_cyfr = 0;
+    if(s[0] == '0'){
+        wynik.l_cyfr++;
+        return wynik;
+    }
     int idx = 0;
-    TYPE temp = 0;
-    TYPE mul = 1;
     int id = 0;
     while(s[idx] != '\0'){
         while(s[idx] != '\0'){
@@ -150,6 +156,9 @@ dluga_liczba string_2_dluga_liczba_b(char s[])
 
 void wypisz_dluga_liczba(dluga_liczba m)
 {
+    if(m.l_cyfr == 0){
+        printf("0");
+    }
     for(long long int idx = m.l_cyfr-1; idx >= 0; idx--){
         printf("%llu ",m.cyfry[idx]);
     }
@@ -167,10 +176,12 @@ int main()
     // scanf("%s %s", sm, sn);
     // przykladowy sm[] = "1834674407370955161518446744073709551615184467440737095516151844674407370955161518446744073709551615";
     char sm[] = "1834674407370955161518446744073709551615184467440737095516151844674407370955161518446744073709551615";
-    char sn[] = "1834674407370955161518446744073709551615184467440737095516151844674407370955161518446744073709551615";
+    // char sn[] = "1834674407370955161518446744073709551615184467440737095516151844674407370955161518446744073709551615";
     // konwertujemy stringi do typy <dluga_liczba>
+    char sn[] = "1";
     m = string_2_dluga_liczba_b(sm);
     n = string_2_dluga_liczba_b(sn);
+    wypisz_dluga_liczba(n);
     wypisz_dluga_liczba(m);
     // opakowanie tablicy w strukure to sposob, aby przekazac tablice w calosci przez wartosc!
     int przeniesienie;
